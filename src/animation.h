@@ -43,6 +43,7 @@ void animation_create(Animation* animation, uint32_t delay);
 int32_t animation_addFrame(Animation* animation, Image* frame);
 void animation_update(Animation* animation);
 void animation_render(Animation* animation, Video *video, int32_t x, int32_t y);
+void animation_render_size(Animation* animation, Video* video, int32_t x, int32_t y, int32_t w, int32_t h);
 BOOL animation_ended(Animation* animation);
 Image* animation_getCurrentFrame(Animation* animation);
 BOOL animation_hasFinished(const Animation* animation);

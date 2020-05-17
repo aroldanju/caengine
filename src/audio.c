@@ -82,6 +82,7 @@ void audio_toggle_sound(AUDIO* audio)	{
 
 void audio_disable(AUDIO* audio)	{
 	audio->settings.enabled = FALSE;
+
 }
 
 void audio_enable(AUDIO* audio)	{

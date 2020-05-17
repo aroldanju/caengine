@@ -48,28 +48,41 @@ void surface_set_pixel(SDL_Surface* surface, int x, int y, uint32_t pixel);
 typedef struct _image {
     SDL_Surface *surface;
     SDL_Texture *texture;
+    BOOL 		needUpdate;
+    uint8_t 	alpha;
+    uint8_t 	red, green, blue;
+    BOOL 		colorMod;
 } Image;
 
-BOOL image_load_img(Image *image, const char *data, uint32_t length, Video* video, const PAL* palette);
+BOOL image_create_blank_sized(Image* image, uint32_t w, uint32_t h);
 
-BOOL image_load_from_mem(Image *image, const char *data, uint32_t length, Video* video);
+BOOL image_create_blank(Image* image);
 
-BOOL image_load(Image *image, const char *filename, Video* video);
+BOOL image_load_img(Image *image, const char *data, uint32_t length, /*Video* video, */const PAL* palette);
+
+BOOL image_load_from_mem(Image *image, const char *data, uint32_t length/*, Video* video*/);
+
+BOOL image_load(Image *image, const char *filename/*, Video* video*/);
 
 void image_destroy(Image *image);
 
 void image_render(Image *image, int32_t x, int32_t y, Video* video);
 
-BOOL image_extract(Image* dst, Image *src,  uint32_t x, uint32_t y, uint32_t w, uint32_t h, Video* video);
+BOOL image_extract(Image* dst, Image *src,  uint32_t x, uint32_t y, uint32_t w, uint32_t h/*, Video* video*/);
+BOOL image_extract_destination(Image* dst, Image *src, uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint32_t tx, uint32_t ty, uint32_t tw, uint32_t th);
 
 void image_set_alpha(Image* image, uint8_t alpha);
 
-BOOL image_copy(Image* dst, const Image* src, Video* video);
+BOOL image_copy(Image* dst, const Image* src/*, Video* video*/);
 
 BOOL image_pal_load(PAL* pal, const char* data, uint32_t length);
 
 void image_create(Image* image);
 
-BOOL image_create_texture(Image* dst, const Image* src, uint32_t width, uint32_t height, Video* video);
+BOOL image_create_texture(Image* dst, const Image* src, uint32_t width, uint32_t height/*, Video* video*/);
+
+void image_set_color_mod(Image* image, uint8_t r, uint8_t g, uint8_t b);
+
+void image_render_sized(Image* image, int32_t x, int32_t y, uint32_t w, uint32_t h, Video *video);
 
 #endif /* __image_h */

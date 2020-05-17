@@ -64,11 +64,11 @@ uint32_t ttf_getWidth(Ttf* font, const char* text) {
 }
 
 SDL_Surface* ttf_render(Ttf * font, const char* text, uint8_t r, uint8_t g, uint8_t b)  {
-    SDL_Surface *surface = TTF_RenderText_Blended(font->font, text, (SDL_Color){r, g, b});
+    SDL_Surface *surface = TTF_RenderText_Blended(font->font, text, (SDL_Color){r, g, b, 255});
     return surface;
 }
 
 SDL_Surface* ttf_render_wrap(Ttf * font, const char* text, uint8_t r, uint8_t g, uint8_t b, uint32_t w)  {
-    SDL_Surface *surface = TTF_RenderText_Blended_Wrapped(font->font, text, (SDL_Color){r, g, b}, w);
+    SDL_Surface *surface = TTF_RenderText_Blended_Wrapped(font->font, text, (SDL_Color){r, g, b, 255}, w);
     return surface;
 }

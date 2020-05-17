@@ -40,7 +40,7 @@ BOOL music_load(Music* music, const char *filename) {
 }
 
 void music_play(Music* music) {
-    music_play_loops(music, 0);
+    music_play_loops(music, -1);
 }
 
 void music_play_loops(Music* music, int loops){

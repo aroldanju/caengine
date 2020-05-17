@@ -27,6 +27,9 @@ void label_create(Label* label, Ttf* font)  {
 
     label->image.surface = NULL;
     label->image.texture = NULL;
+
+    label->image.alpha = 255;
+    label->image.colorMod = FALSE;
 }
 
 void label_setCaption(Label* label, const char* caption) {

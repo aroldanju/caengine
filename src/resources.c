@@ -75,6 +75,12 @@ void resources_add_font(Resources* resources, Ttf *ttf)   {
     resources->numFonts++;
 }
 
+
+void resources_add_animation(Resources* resources, Animation* animation) {
+    resources->animations[resources->numAnimations] = animation;
+    resources->numAnimations++;
+}
+
 void resources_add_palette(Resources* resources, PAL *palette)   {
     resources->palettes[resources->numPalettes] = palette;
     resources->numPalettes++;
@@ -85,25 +91,35 @@ void resources_release(Resources* resources)    {
 
     for (i = 0; i < resources->numImages; i++) {
         image_destroy(resources->images[i]);
+        free(resources->images[i]);
         resources->images[i] = NULL;
     }
     resources->numImages = 0;
 
     for (i = 0; i < resources->numSounds; i++) {
         sound_destroy(resources->sounds[i]);
+        free(resources->sounds[i]);
         resources->sounds[i] = NULL;
     }
     resources->numSounds = 0;
 
     for (i = 0; i < resources->numFonts; i++) {
         ttf_destroy(resources->fonts[i]);
+        free(resources->fonts[i]);
         resources->fonts[i] = NULL;
     }
     resources->numFonts = 0;
 
     for (i = 0; i < resources->numMusics; i++) {
         music_release(resources->musics[i]);
+        free(resources->musics[i]);
         resources->musics[i] = NULL;
     }
     resources->numMusics = 0;
+
+    for (i = 0; i < resources->numAnimations; i++) {
+        free(resources->animations[i]);
+        resources->animations[i] = NULL;
+    }
+    resources->numAnimations = 0;
 }

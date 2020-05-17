@@ -57,6 +57,7 @@ void video_render(Video* video);
 uint32_t video_get_fps(Video* video);
 
 void video_render_line(Video* video, uint32_t fx, uint32_t fy, uint32_t tx, uint32_t ty, uint8_t r, uint8_t g, uint8_t b);
+void video_render_line_alpha(Video* video, uint32_t fx, uint32_t fy, uint32_t tx, uint32_t ty, uint8_t r, uint8_t g, uint8_t b, uint8_t a) ;
 void video_render_rect(Video* video, uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint8_t r, uint8_t g, uint8_t b);
 void video_render_rect_alpha(Video* video, uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 

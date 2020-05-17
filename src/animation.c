@@ -88,6 +88,26 @@ void animation_update(Animation* animation/*, uint32 elapsed*/) {
     }
 }
 
+void animation_render_size(Animation* animation, Video* video, int32_t x, int32_t y, int32_t w, int32_t h) {
+
+    if (animation->finished && !animation->infinite) {
+        // If animation has finished and it is not infinite, render the last frame
+        image_render(animation->frames[animation->numFrames - 1], x, y, video);
+    }
+    else {
+
+        if (animation->currentFrame >= animation->numFrames) {
+#ifdef __CAENGINE_DEBUG__
+            printf("animation_render(): invalid current frame (%d of %d)", animation->currentFrame,
+                   animation->numFrames);
+#endif
+            return;
+        }
+
+        image_render_sized(animation->frames[animation->currentFrame], x, y, w, h, video);
+    }
+}
+
 void animation_render(Animation* animation, Video* video, int32_t x, int32_t y) {
 
     if (animation->finished && !animation->infinite) {
